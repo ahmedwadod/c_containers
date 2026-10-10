@@ -7,7 +7,7 @@
 #include <assert.h>
 #include <stdbool.h>
 
-#define RCBUFFER_IMPLEMENTATION
+#define CCONTS_RCBUFFER_IMPLEMENTATION
 #include "rcbuffer.h"
 
 struct st {
@@ -37,7 +37,7 @@ bool unsafe_free_check(void *buf) {
 	cconts_rc_header *ptr = buf;
 	ptr--;
 	return ptr->magic != CCONTS_RCBUFFER_MAGIC || 
-		(ptr->sref == 0 && ptr->wref == 0);
+		ptr->ref == 0 ;
 };
 
 int main(void) {

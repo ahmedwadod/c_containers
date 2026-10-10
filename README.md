@@ -10,24 +10,34 @@ Header-only STB-style dynamic containers.
 - `string.h`: Strings
 - `darray.h`: Dynamic Array
 
-## Usage Examples
-For more examples see `examples/` directory.
+## Usage
+1- Copy the container you like to use .h file to your project
+2- In ONLY ONE C FILE IN YOUR PROJECT define `CCONTS_<name>_IMPLEMENTATION`
+3- Include the .h file after the definition
+4- Include the .h file where you want to use it in your project
 
 ### RC Buffer
 ```c
-#define RCBUFFER_IMPLEMENTATION
+#define CCONTS_RCBUFFER_IMPLEMENTATION
 #include "rcbuffer.h"
+
+static int *garray = NULL;
 
 void main(void) {
     /* Allocate a 10 element int array */
     int *data = rc_alloc(10 * sizeof(int));
 
     /* Retain */
-    foo(rc_retain(data));
+    garray = rc_retain(data);
 
     /* Release */
     (void)rc_release(data);
-    // Foo can still use data until it calls rc_release to free it
+    
+    /* garray is still available */
+    garray[1] = 10;
+
+    /* Finally it is being freed */
+    rc_release(garray);
 }
 ```
 
