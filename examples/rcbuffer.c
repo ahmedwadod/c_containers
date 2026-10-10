@@ -47,6 +47,11 @@ int main(void) {
 	for(int i = 0; i < 10; i++) {
 		printf("arr[%d] = %d\n", i, t.arr[i]);
 	}
+	t.arr = rc_realloc(t.arr, 20 * sizeof(int));
+	for(int i = 0; i < 20; i++) {
+		t.arr[i] = i * 8;
+		printf("arr[%d] = %d\n", i, t.arr[i]);
+	}
 	rc_release(t.arr); // This will free it
 	assert(unsafe_free_check(t.arr));
 	return 0;
