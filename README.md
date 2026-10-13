@@ -10,7 +10,7 @@ integration or external dependencies required.
 - `arcbuffer.h`: Atomic reference counted generic buffer
 
 **Coming soon**:
-- `string.h`: Strings
+- `optional.h`: Optionals
 
 All runnable examples below live in [`examples/`](examples/) and build with
 its [`Makefile`](examples/Makefile) (`make all`).
