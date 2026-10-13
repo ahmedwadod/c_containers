@@ -106,13 +106,13 @@ void *rc_realloc(void *buf, size_t new_size);
 #endif
 #ifndef CCONTS_RCBUFFER_FREE
 #define CCONTS_RCBUFFER_FREE free
+#endif
 #ifndef CCONTS_RCBUFFER_REALLOC
 static void *cconts_rcbuf_stdlib_realloc_wrapper(void *ptr, size_t new_size, size_t old_size) {
 	(void)old_size;
 	return realloc(ptr, new_size);
 }
 #define CCONTS_RCBUFFER_REALLOC cconts_rcbuf_stdlib_realloc_wrapper
-#endif
 #endif
 
 #ifdef CCONTS_RCBUFFER_IMPLEMENTATION
@@ -158,6 +158,7 @@ void *rc_realloc(void *buf, size_t new_size) {
 		       	ptr->dsize);
 	if(ptr == NULL) return NULL;
 	ptr->dsize = new_size;
+	ptr++;
 	return ptr;
 }
 #endif
